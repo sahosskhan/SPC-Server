@@ -36,6 +36,11 @@ async function run() {
     const result = await userCollection.insertOne(user);
     res.send(result);
   });
+
+  app.get("/user-list", async (req, res) => {
+    const result = await userCollection.find().toArray();
+    res.send(result);
+  });
                 
 
     // await client.connect();
