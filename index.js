@@ -25,7 +25,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const userCollection = client.db("SpanishCityFCDb").collection("User");
-
+    const teamCollection = client.db("SpanishCityFCDb").collection("Team");
   app.post("/users", async (req, res) => {
     const user = req.body;
     const query = { email: user.email };
@@ -43,6 +43,17 @@ async function run() {
   });
                 
 
+  app.post("/add-player", async (req, res) => {
+    try {
+     const playerInfo = req.body;
+     const result = await teamCollection.insertOne(playerInfo);
+     res.send(result);
+    }
+     catch (error) {
+       console.log(error);
+     
+    }
+   });
     // await client.connect();
 
     // await client.db("admin").command({ ping: 1 });
