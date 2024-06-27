@@ -41,6 +41,13 @@ async function run() {
     const result = await userCollection.find().toArray();
     res.send(result);
   });
+
+  
+  app.get("/player-list", async (req, res) => {
+    const result = await teamCollection.find().toArray();
+    res.send(result);
+  });
+         
                 
 
   app.post("/add-player", async (req, res) => {
